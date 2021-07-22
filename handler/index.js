@@ -20,4 +20,24 @@ module.exports = async (client) => {
     // Events
     const eventFiles = await globPromise(`${process.cwd()}/events/*.js`);
     eventFiles.map((value) => require(value));
+
+    //making / commands
+    const slashCommands = await globPromise(`${process.cwd()}/SlashCommands/*/*.js`);
+
+const arrayOfSlashCommands = [];
+
+slashCommands.map((value) => {
+    const file = require(value);
+    if(!file?.name) return;
+
+
+    client.slashCommands.set(file.name, file);
+
+    arrayOfSlashCommands.push(file);
+})
+
+  client.on('ready', () => {
+    client.guilds.cache.get('847711147238490172').commands.set(arrayOfSlashCommands);
+    // await client.applications.command.set() //use this when bot open for public
+  })
 };
