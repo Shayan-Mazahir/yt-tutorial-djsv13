@@ -15,13 +15,8 @@ module.exports = {
      * @param {String[]} args 
      */
      run: async (client, interaction, args, message) => {
-        const msg = interaction.editReply(`🏓 Pinging...`)
-       msg.delete(`🏓 Pinging...`)
-         const embed = new MessageEmbed()
-            .setTitle('Pong!')
-            .setDescription(`WebSocket ping is ${client.ws.ping}MS\nMessage edit ping is ${Math.floor(msg.createdAt - await msg.createdAt)}MS!`)
-            interaction.editReply({ embeds: [embed]});
+            interaction.editReply({ embeds: [your message]});
            
 
-    },
+    
 };
